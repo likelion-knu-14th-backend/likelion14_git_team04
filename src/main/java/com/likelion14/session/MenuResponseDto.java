@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class StudentResponseDto {
+public class MenuResponseDto {
 
+    private Long id;
     private String name;
-    private String studentNumber;
-    private Integer age;
-    private String major;
+    private int price;
+    private String category;
 }

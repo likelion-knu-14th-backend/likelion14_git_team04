@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class StudentCreateRequestDto {
+public class MenuCreateRequestDto {
 
     private String name;
-    private String studentNumber;
-    private Integer age;
-    private String major;
+    private int price;
+    private String category;
+
 
 }
