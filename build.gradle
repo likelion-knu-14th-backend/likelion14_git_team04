@@ -35,3 +35,15 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0'  //Swagger UI 의존성
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
