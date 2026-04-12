@@ -1,13 +1,20 @@
-package com.likelion14.session;
+package com.likelion14.session.dto;
 
-import lombok.AllArgsConstructor;
+import com.likelion14.session.entity.Student;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class StudentResponseDto {
+
     private String name;
     private String studentNumber;
     private Integer age;
     private String major;
+
+    public StudentResponseDto(Student student) {
+        this.name = student.getName();
+        this.studentNumber = student.getStudentNumber();
+        this.age = student.getAge();
+        this.major = student.getMajor();
+    }
 }

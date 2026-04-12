@@ -1,4 +1,10 @@
 package com.likelion14.session.repository;
 
-public class StudentRepository {
+import com.likelion14.session.entity.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    Optional<Student> findByStudentNumber(String studentNumber);
 }
