@@ -1,5 +1,4 @@
-package com.likelion14.session;
-
+package com.likelion14.session.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +11,4 @@ public class StudentCreateRequestDto {
     private String studentNumber;
     private Integer age;
     private String major;
-
 }
