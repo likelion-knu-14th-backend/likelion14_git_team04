@@ -13,7 +13,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("나만의 API")
-                        .description("학생정보 REST API 문서")
+                        .description("주식정보 REST API 문서")
                         .version("1.0.0"));
     }
 }
