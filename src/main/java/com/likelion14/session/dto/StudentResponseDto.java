@@ -11,10 +11,16 @@ public class StudentResponseDto {
     private Integer age;
     private String major;
 
+    private String bio;
+    private String phoneNum;
+
     public StudentResponseDto(Student student) {
         this.name = student.getName();
         this.studentNumber = student.getStudentNumber();
         this.age = student.getAge();
         this.major = student.getMajor();
+
+        this.bio = student.getProfile().getBio();
+        this.phoneNum = student.getProfile().getPhoneNum();
     }
 }
