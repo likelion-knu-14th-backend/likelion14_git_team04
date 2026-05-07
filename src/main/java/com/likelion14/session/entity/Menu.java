@@ -9,15 +9,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Grade {
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String subjectName;
-    private String grade;
+    private String menuName;
+    private int price;
+    private int stock;
 
     @ManyToOne
-    @JoinColumn(name="student_id")
-    private Student student;
+    @JoinColumn(name="foodstore_id")
+    private FoodStore foodStore;
 }

@@ -1,7 +1,6 @@
 package com.likelion14.session.entity;
 
 import jakarta.persistence.*;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,15 +9,15 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Profile {
+public class StoreInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String bio;
-    private String phoneNum;
+    private String category;
+    private String address;
+    private String description;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @JoinColumn(name = "foodstore_id")
+    private FoodStore foodStore;
 }
