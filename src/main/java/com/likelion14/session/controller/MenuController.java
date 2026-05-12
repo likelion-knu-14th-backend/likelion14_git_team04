@@ -3,6 +3,7 @@ package com.likelion14.session.controller;
 import com.likelion14.session.dto.MenuRequestDto;
 import com.likelion14.session.dto.MenuResponseDto;
 import com.likelion14.session.service.MenuService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class MenuController {
     @PostMapping("/{tel}")
     public void uploadFoodStoreMenu(
             @PathVariable("tel") String tel,
-            @RequestBody List<MenuRequestDto> gradeRequestDtoList
+            @Valid  @RequestBody List<MenuRequestDto> gradeRequestDtoList
     ) {
         menuService.uploadFoodStoreMenu(tel, gradeRequestDtoList);
     }

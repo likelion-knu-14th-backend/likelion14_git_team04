@@ -3,6 +3,7 @@ package com.likelion14.session.controller;
 import com.likelion14.session.dto.FoodStoreCreateRequestDto;
 import com.likelion14.session.dto.FoodStoreResponseDto;
 import com.likelion14.session.service.FoodStoreService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class FoodStoreController {
 
 
     @PostMapping
-    public FoodStoreResponseDto createFoodStore(@RequestBody FoodStoreCreateRequestDto request) {
+    public FoodStoreResponseDto createFoodStore(@Valid @RequestBody FoodStoreCreateRequestDto request) {
         return foodStoreService.createFoodStore(request);
     }
 
@@ -34,7 +35,7 @@ public class FoodStoreController {
     @PutMapping("/{tel}")
     public FoodStoreResponseDto updateFoodStore(
             @PathVariable String tel,
-            @RequestBody FoodStoreCreateRequestDto request
+            @Valid @RequestBody FoodStoreCreateRequestDto request
     ) {
         return foodStoreService.updateFoodStore(tel, request);
     }
