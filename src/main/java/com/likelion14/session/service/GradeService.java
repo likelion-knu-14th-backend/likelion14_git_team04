@@ -4,6 +4,7 @@ import com.likelion14.session.dto.GradeRequestDto;
 import com.likelion14.session.dto.GradeResponseDto;
 import com.likelion14.session.entity.Grade;
 import com.likelion14.session.entity.Student;
+import com.likelion14.session.exception.StudentNotFoundException;
 import com.likelion14.session.repository.GradeRepository;
 import com.likelion14.session.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class GradeService {
     public void uploadStudentGrade(
             String studentNumber, List<GradeRequestDto> gradeRequestDtoList) {
         Student student = studentRepository.findByStudentNumber(studentNumber)
-                .orElseThrow(() -> new IllegalArgumentException("해당 학생이 존재하지 않습니다."));
+                .orElseThrow(StudentNotFoundException::new);
 
         List<Grade> gradeList = gradeRequestDtoList.stream()
                 .map(dto -> {
@@ -36,7 +37,7 @@ public class GradeService {
 
     public List<GradeResponseDto> getStudentGrade(String studentNumber) {
         Student student = studentRepository.findByStudentNumber(studentNumber)
-                .orElseThrow(() -> new IllegalArgumentException("해당 학생이 존재하지 않습니다."));
+                .orElseThrow(StudentNotFoundException::new);
 
         List<Grade> gradeList = gradeRepository.findAllByStudent(student);
 
