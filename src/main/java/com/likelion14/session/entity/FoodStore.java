@@ -1,5 +1,6 @@
 package com.likelion14.session.entity;
 
+import com.likelion14.session.auth.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,15 @@ public class FoodStore {
 
     @Column(unique = true, nullable = false)
     private String tel;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public FoodStore(String name, String tel) {
         this.name = name;

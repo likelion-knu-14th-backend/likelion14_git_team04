@@ -4,7 +4,7 @@ import com.likelion14.session.dto.FoodStoreCreateRequestDto;
 import com.likelion14.session.dto.FoodStoreResponseDto;
 import com.likelion14.session.entity.StoreInfo;
 import com.likelion14.session.entity.FoodStore;
-import com.likelion14.session.exception.StudentNotFoundException;
+import com.likelion14.session.exception.FoodStoreNotFoundException;
 import com.likelion14.session.repository.FoodStoreRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +46,7 @@ public class FoodStoreService {
 
     public FoodStoreResponseDto getFoodStores(String tel) {
         FoodStore foodStore = foodStoreRepository.findByTel(tel)
-                .orElseThrow(StudentNotFoundException::new);
+                .orElseThrow(FoodStoreNotFoundException::new);
 
         return new FoodStoreResponseDto(foodStore);
     }
@@ -54,7 +54,7 @@ public class FoodStoreService {
     @Transactional
     public FoodStoreResponseDto updateFoodStore(String tel, FoodStoreCreateRequestDto request) {
         FoodStore foodStore = foodStoreRepository.findByTel(tel)
-                .orElseThrow(StudentNotFoundException::new);
+                .orElseThrow(FoodStoreNotFoundException::new);
 
         foodStore.update(
                 request.getName(),
@@ -74,7 +74,7 @@ public class FoodStoreService {
 
     public void deleteFoodStore(String tel) {
         FoodStore foodStore = foodStoreRepository.findByTel(tel)
-                .orElseThrow(StudentNotFoundException::new);
+                .orElseThrow(FoodStoreNotFoundException::new);
 
         foodStoreRepository.delete(foodStore);
     }

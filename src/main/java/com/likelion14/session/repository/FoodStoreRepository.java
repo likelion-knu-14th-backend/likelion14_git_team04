@@ -7,4 +7,8 @@ import java.util.Optional;
 
 public interface FoodStoreRepository extends JpaRepository<FoodStore, Long> {
     Optional<FoodStore> findByTel(String tel);
+
+    boolean existsByEmail(String email);
+
+    Optional<FoodStore> findByEmail(String email);
 }
