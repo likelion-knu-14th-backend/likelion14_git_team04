@@ -1,5 +1,7 @@
 package com.likelion14.session.service;
 
+import com.likelion14.session.auth.entity.Member;
+import com.likelion14.session.auth.repository.MemberRepository;
 import com.likelion14.session.dto.BookRequestDto;
 import com.likelion14.session.dto.BookResponseDto;
 import com.likelion14.session.entity.Book;
@@ -18,30 +20,58 @@ public class BookService {
 
     private final BookRepository bookRepository;
     private final CategoryRepository categoryRepository;
+    private final MemberRepository memberRepository;
 
-    public BookService(BookRepository bookRepository, CategoryRepository categoryRepository) {
+    public BookService(
+            BookRepository bookRepository,
+            CategoryRepository categoryRepository,
+            MemberRepository memberRepository
+    ) {
         this.bookRepository = bookRepository;
         this.categoryRepository = categoryRepository;
+        this.memberRepository = memberRepository;
     }
 
-    // 카테고리(1 소설 2 it 3 자기계발)
     @PostConstruct
     public void initCategories() {
         if (categoryRepository.count() == 0) {
-            categoryRepository.save(new Category("소설/문학"));
-            categoryRepository.save(new Category("IT/프로그래밍"));
-            categoryRepository.save(new Category("자기계발"));
+            categoryRepository.save(new Category("Novel/Literature"));
+            categoryRepository.save(new Category("IT/Programming"));
+            categoryRepository.save(new Category("Self Development"));
         }
     }
 
     @Transactional
     public BookResponseDto createBook(BookRequestDto request) {
-        Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() -> new IllegalArgumentException("없는 카테고리입니다."));
+        Category category = findCategory(request.getCategoryId());
 
         Book book = new Book(request.getTitle(), request.getAuthor(), category);
         Book savedBook = bookRepository.save(book);
         return new BookResponseDto(savedBook);
+    }
+
+    @Transactional
+    public BookResponseDto createMyBook(BookRequestDto request, Long memberId) {
+        Category category = findCategory(request.getCategoryId());
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found."));
+
+        Book book = new Book(request.getTitle(), request.getAuthor(), category, member);
+        Book savedBook = bookRepository.save(book);
+        return new BookResponseDto(savedBook);
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookResponseDto> getBooksByMemberId(Long memberId) {
+        memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found."));
+
+        List<Book> books = bookRepository.findAllByMember_Id(memberId);
+        List<BookResponseDto> responseList = new ArrayList<>();
+        for (Book book : books) {
+            responseList.add(new BookResponseDto(book));
+        }
+        return responseList;
     }
 
     @Transactional(readOnly = true)
@@ -57,17 +87,16 @@ public class BookService {
     @Transactional(readOnly = true)
     public BookResponseDto getBook(Long id) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("없는 책입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("Book not found."));
         return new BookResponseDto(book);
     }
 
     @Transactional
     public BookResponseDto updateBook(Long id, BookRequestDto request) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("없는 책입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("Book not found."));
 
-        Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() -> new IllegalArgumentException("없는 카테고리입니다."));
+        Category category = findCategory(request.getCategoryId());
 
         book.update(request.getTitle(), request.getAuthor(), category);
         return new BookResponseDto(book);
@@ -76,7 +105,12 @@ public class BookService {
     @Transactional
     public void deleteBook(Long id) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("없는 책입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("Book not found."));
         bookRepository.delete(book);
+    }
+
+    private Category findCategory(Long categoryId) {
+        return categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new IllegalArgumentException("Category not found."));
     }
 }
