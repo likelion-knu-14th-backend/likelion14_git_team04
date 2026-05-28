@@ -42,7 +42,9 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
-                                "/api/v1/auth/**"
+                                "/api/v1/auth/**",
+                                "/login-page",
+                                "/kakao-login.png"
                         ).permitAll()
                         // 그 외 요청은 인증 필요
                         .anyRequest().authenticated()

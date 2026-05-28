@@ -17,6 +17,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String provider;
+    private String providerId;
+
     private String name;
 
     @Column(unique = true, nullable = false)
