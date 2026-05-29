@@ -30,6 +30,10 @@ public class FoodStore {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String provider;
+    private String providerId;
+
+
     public FoodStore(String name, String tel) {
         this.name = name;
         this.tel = tel;

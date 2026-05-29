@@ -11,4 +11,6 @@ public interface FoodStoreRepository extends JpaRepository<FoodStore, Long> {
     boolean existsByEmail(String email);
 
     Optional<FoodStore> findByEmail(String email);
+
+    Optional<FoodStore> findByProviderAndProviderId(String provider, String providerId);
 }
