@@ -1,0 +1,73 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :compileJava UP-TO-DATE
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.4)
+
+2026-06-18T01:05:44.434+09:00  INFO 27556 --- [session] [           main] c.likelion14.session.SessionApplication  : Starting SessionApplication using Java 21.0.9 with PID 27556 (C:\likelion\session\build\classes\java\main started by 김주영 in C:\likelion\session)
+2026-06-18T01:05:44.440+09:00  INFO 27556 --- [session] [           main] c.likelion14.session.SessionApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-06-18T01:05:45.317+09:00  INFO 27556 --- [session] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-18T01:05:45.391+09:00  INFO 27556 --- [session] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 3 JPA repository interfaces.
+2026-06-18T01:05:45.961+09:00  INFO 27556 --- [session] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-06-18T01:05:45.975+09:00  INFO 27556 --- [session] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-18T01:05:45.975+09:00  INFO 27556 --- [session] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-06-18T01:05:46.059+09:00  INFO 27556 --- [session] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1569 ms
+2026-06-18T01:05:46.214+09:00  INFO 27556 --- [session] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-18T01:05:46.281+09:00  INFO 27556 --- [session] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-06-18T01:05:46.867+09:00  INFO 27556 --- [session] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-18T01:05:46.913+09:00  INFO 27556 --- [session] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-18T01:05:47.011+09:00  INFO 27556 --- [session] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@5cb8580
+2026-06-18T01:05:47.011+09:00  INFO 27556 --- [session] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-18T01:05:47.101+09:00  INFO 27556 --- [session] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mariadb://localhost:3308/likelion_db?user=root&password=***]
+	Database driver: MariaDB Connector/J
+	Database dialect: MariaDBDialect
+	Database version: 10.6.25
+	Default catalog/schema: likelion_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-18T01:05:48.065+09:00  INFO 27556 --- [session] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    alter table if exists members 
+       modify column role enum ('ADMIN','USER') not null
+2026-06-18T01:05:48.190+09:00  INFO 27556 --- [session] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-18T01:05:48.252+09:00  INFO 27556 --- [session] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+Hibernate: 
+    select
+        count(*) 
+    from
+        category c1_0
+2026-06-18T01:05:49.175+09:00  WARN 27556 --- [session] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-18T01:05:49.261+09:00  WARN 27556 --- [session] [           main] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a1031777-250b-4db9-8983-dd3eef9c80d3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-18T01:05:49.264+09:00  INFO 27556 --- [session] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-06-18T01:05:49.831+09:00  INFO 27556 --- [session] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-06-18T01:05:49.839+09:00  INFO 27556 --- [session] [           main] c.likelion14.session.SessionApplication  : Started SessionApplication in 5.853 seconds (process running for 6.29)
+2026-06-18T01:05:49.881+09:00  WARN 27556 --- [session] [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-06-18T01:05:49.881+09:00  WARN 27556 --- [session] [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-06-18T01:06:15.604+09:00  INFO 27556 --- [session] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-18T01:06:15.604+09:00  INFO 27556 --- [session] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-18T01:06:15.604+09:00  INFO 27556 --- [session] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+
+> Task :bootRun FAILED
+4 actionable tasks: 3 executed, 1 up-to-date

@@ -9,16 +9,16 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Grade {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String subjectName;
-    private String grade;
+    private String name;
+    private String description;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @JoinColumn(name = "book_id")
+    private Book book;
 
 }

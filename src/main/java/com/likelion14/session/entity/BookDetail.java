@@ -9,15 +9,15 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Profile {
+public class BookDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String bio;
-    private String phoneNum;
+    private String summary;
+    private String publisher;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @JoinColumn(name = "book_id")
+    private Book book;
 }

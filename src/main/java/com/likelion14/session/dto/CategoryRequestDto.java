@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class GradeRequestDto {
-    private String subjectName;
-    private String grade;
+public class CategoryRequestDto {
+    private String name;
+    private String description;
 }
